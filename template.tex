@@ -1,0 +1,244 @@
+
+ %参考《控制理论与应用》提供的LATEX模板  http://jcta.alljournals.ac.cn/uploadfile/cta_cn/20170419/kzllyy%20template20170419-2.9.zip
+ % BHOSC   BUAAthesis  https://github.com/BHOSC/BUAAthesis/
+ % 北航学报 http://bhxb.buaa.edu.cn/UserFiles/File/%E5%8C%97%E8%88%AA%E5%AD%A6%E6%8A%A5%E6%A8%A1%E6%9D%BF17.1.16(1).doc
+
+ %%%% 五号字对应10.5pt，不知道这样设置对否？
+\documentclass[10.5pt,twocolumn]{jbuaa}
+
+
+%%画圆圈数字
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=1pt] (char) {#1};}}
+
+%取消英文连词符
+% \tolerance=1
+% \emergencystretch=\maxdimen
+% \hyphenpenalty=10000
+% \hbadness=10000
+
+\newcommand\mycolorRed[1]{{\color{red}#1}}
+\newcommand\mycolorYellow[1]{{\color{yellow}#1}}
+% \newcommand*\mycolorRed{\color{red}}
+
+%%%????? 公式中字体的定义尺寸为 10 磅,上标/下标 68%,次下标/上标 42% ??????
+\DeclareMathSizes{10.5}{10}{6.8}{4.2}
+%%%% 本示例中带单位的数据采用的是siunitx来生成，好像默认与公式同样大小的字体，所以数字在正文中会小一些
+%%%% 行文中普通数字大小为10.5pt，公式里或者用siunitx生成的数字则会是10pt，多少有点不协调。
+
+%%%设置公式前后距离，差不多近似
+\setlength{\abovedisplayskip}{2.5mm}
+\setlength{\belowdisplayskip}{2.5mm}
+
+
+\usepackage{tabu}
+\usepackage{longtable}
+\usepackage{makecell}
+\renewcommand\cellgape{\Gape[-3pt][-3pt]}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%      文章正文
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 标题，基金项目，作者，通信地址定义
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{
+\vspace{0cm} \erhao\hei 基于四边形分网的传输线迭代法在非线性静磁场的应用 %\vspace{-0.2cm}
+}
+
+\author{
+\sihao\fang 张某某 \makebox{$^{\text{1,2}}$}，李某 \makebox{$^{\text{1,2,*}}$}，上官某某 \makebox{$^{\text{2,3}}$}，林某 \makebox{$^{\text{3}}$}，赵某 \makebox{$^{\text{3}}$}，王某 \makebox{$^{\text{3}}$}\\[0.1cm]
+\wuhao \kai (1.~~哈尔滨工业大学~~电气学院，哈尔滨~~150001；2.~~哈尔滨工业大学~~电气学院，哈尔滨~~150001；\\
+\wuhao \kai 3.~~哈尔滨工业大学~~电气学院，哈尔滨~~150001)
+}
+
+\date{}  % 这一行用来去掉默认的日期显示
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 奇数页页眉
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fancyhead[CO]{{\footnotesize 中国电机工程学报  }}            %请在这里写出第一作者以及论文题目
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  显示title，并设页码为空(按杂志社要求）
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%      中文摘要
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\CKeyword{关键词1；关键词2}
+\CLCNo{V221\makebox{$^{\scalebox{0.6}{\!+}}$}.3；TB553}
+\Dcode{A}
+\PaperNo{1001-5965 （XXXX） XX-XXXX-XX}
+\EKeyword{keyword1；keyword2}
+%\twocolumn[
+%  \begin{@twocolumnfalse}
+  \maketitle
+%\positiontextbox{2.2cm}{2.9cm}{\wuhao http://bhxb.buaa.edu.cn \quad  jbuaa@buaa.edu.cn\\[0.3cm]
+%\wuhao DOI: \ 10.13700/j.bh.1001-5965.****.****}
+\begin{EAbstractJBUAA}
+英文摘要。
+\end{EAbstractJBUAA}
+
+\begin{CAbstractJBUAA}
+中文摘要。
+\end{CAbstractJBUAA}
+%%%%%%%%首页角注
+%\positiontextbox{2.0cm}{25cm}{
+%\noindent\rule{4cm}{.5pt}\\[0.5ex]%
+%\hspace*{1em} \liuhao \linespread{0.8}\selectfont
+%\parbox{\textwidth}{%
+%\hei\makebox[\widthof{\makebox{*}收}][r]{收}稿日期: 2015-**-**； 录用日期： 2015-**-**； 网络出版时间：（此行信息已填） \\%
+%\hei\makebox[\widthof{\makebox{*}收}][r]{网}络出版地址: （已填）\\
+%\hei\makebox[\widthof{\makebox{*}收}][r]{基}金项目：国家自然科学基金（基金号~12345678）；中国博士后科学基金（基金号~87654321）（注意：国家级基金放前，地方级放后）\\
+%\hei\makebox[\widthof{\makebox{*}收}][r]{\makebox{*}通}信作者：E-mail：bhxb@buaa.edu.cn\\ \\
+%\hei\makebox[\widthof{\makebox{*}收}][r]{引}用格式：（可不填）
+%}}
+%  \end{@twocolumnfalse}
+%]
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  正文由此开始－－－－－－－－－－－－－－－－－－－－－－－－－
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\wuhao
+%  分栏开始
+
+%%%%%！！！！！正文在第一页两栏分别合适位置插入 \enlargethispage{-3.3cm}，给首页跨双栏脚注留空间，大小需要结合前面位置和高度手动设置！！！！！
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{./zhengwen.tex}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  参考文献
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\renewcommand\refname{\hei\wuhao\centerline{参考文献（References）}\global\def\refname{参考文献}}
+\vskip 12pt
+
+\let\OLDthebibliography\thebibliography
+\renewcommand\thebibliography[1]{
+  \OLDthebibliography{#1}
+  \setlength{\parskip}{0pt}
+  \setlength{\itemsep}{0pt plus 0.3ex}
+}
+
+{
+\renewcommand{\baselinestretch}{0.9}
+\liuhao
+\bibliographystyle{unsrt}
+\bibliography{./TempExample}
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 作者简历
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%{
+%\xiaowuhao
+%\noindent {\hei 作者简介:}
+%
+%\noindent {\hei 姓名}~~~ 性别，学历，职称。主要研究方向：xxxxxxxxxx。
+%\vskip 16pt
+%
+%\noindent {\hei 张某某}~~~ 男，博士研究生。主要研究方向：xxxxxxxxxx。
+%\vskip 16pt
+%
+%\noindent {\hei 李某某}~~~ 男，博士，教授，博士生导师。主要研究方向：xxxxxxxxxx。
+%}
+
+%%%%%！！！！！需要在合适位置插入\newpage，来平衡最后一页两栏！！！！！
+% \newpage  %%% 用于平衡最后一页两栏高度
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % % 附录
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\vskip 20pt
+%
+% \noindent {\hei 附录A:}
+%
+%若确有特殊需要设附录的,附录部分置于作
+%者简介后,标题为“附录A:”、“附录B:”......。公式
+%用大写字母和数字顺序编号,例如“(A1)”, “(A2)”。
+%
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  英文摘要页
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\clearpage
+%\newpage
+%% \cleardoublepage
+%% \cleardoublepage\null
+%% \newpage\null\thispagestyle{empty}\newpage
+%\pagestyle{fancy}
+%\fancyhf{}
+%\lhead{}
+%\chead{\vspace{0.8cm}\centering{{\CJKfamily{hei}\xiaowuhao 北\ 京\ 航\ 空\ 航\ 天\ 大\ 学\ 学\ 报}\\[-0.5ex]
+%{{\xiaowuhao Journal of Beijing University of Aeronautics and Astronautics}}}}
+%\rhead{}
+%\lfoot{}
+%\cfoot{}
+%\rfoot{}
+%\renewcommand{\headrule}{%
+%\hrule height0.4pt width \headwidth \vskip1.0pt%
+%\hrule height0.4pt width \headwidth \vskip-2pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%          英文摘要
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\twocolumn[
+%  \begin{@twocolumnfalse}\vspace*{0.3cm}
+%\begin{center}
+%\parbox{\textwidth}{
+%\setlength{\parindent}{1em}
+%{
+%\centering\sihao\textbf{Title title title title title title} \xiaowuhao\fang （不超过10个实词,不出现非公知公用的缩写词）\\
+%} \vspace{-1.2mm}
+%\begin{center}
+%{\wuhao ZHANG Moumou\makebox{$^{\text{1,2}}$}, LI Mou\makebox{$^{\text{1,2,*}}$}, SHANGGUAN Moumou\makebox{$^{\text{2,3}}$}, LIN Mou\makebox{$^{\text{3}}$}, ZHAO Mou\makebox{$^{\text{3}}$}, WANG Mou\makebox{$^{\text{3}}$}}\\[-0.1cm]
+%\liuhao{(1. School of Aeronautic Science and Engineering, Beijing University of Aeronautics and Astronautics, Beijing 100191, China;\\
+%2. School of Astronautics, Beijing University of Aeronautics and Astronautics, Beijing 100191, China;\\
+%3. College of Automation, Northwestern Polytechnical University, Xi’an 710072, China)}
+%\end{center}
+%
+%\vspace{-10pt}\wuhao
+%{
+%\textbf{Abstract:}
+%(与中文摘要内容对应，英文摘要字数150\textasciitilde 200个单词)英文摘要应和中文摘要对应，并请导师
+%或专业人士把关，保证摘要质量，高质量的摘要有利于文摘被国际权威数据库收录，及引起同行的重视。
+%如果英文摘要比中文摘要更详细，应另提供一份英文摘要的中文副本，以便于本刊英文编辑检查英文。
+%首次出现英文缩写时应注意写明全称。
+%
+%英文摘要的撰写规范请参考本刊网站“下载园地”中的《Ei文摘要求》。
+%
+%\textbf{Key words:} keyword1; keyword2; keyword3; keyword4; keyword5（与中文关键词一一对应,关键词请尽量从EI Controlled term中选择，以提高 EI检索的命中率及被引频次，网址：http://www.engineeringvillage.com/search/quick.url）。
+%}
+%}
+%\end{center}
+%
+%%%%%%！！！！！英文脚注！！！！！
+%\positiontextbox{2.0cm}{16cm}{
+%\noindent\rule{4cm}{.5pt}\\[0.5ex]%
+%\hspace*{1em} \xiaowuhao \linespread{0.8}\selectfont
+%\parbox{\textwidth}{%
+%\CalibriFont
+%\hei\makebox[\widthof{\makebox{*}\textbf{R}}][r]{\textbf{R}}\textbf{eceived:} 2017-xx-xx; \textbf{Accepted:} 2017-xx-xx; \textbf{Published online:} 2017-xx-xx xx:xx\\%
+%\hei\makebox[\widthof{\makebox{*}\textbf{U}}][r]{\textbf{U}}\textbf{RL:} \\
+%\hei\makebox[\widthof{\makebox{*}\textbf{F}}][r]{\textbf{F}}\textbf{oundation item:} National Natural Science Foundation of China (12345678); China Postdoctoral Science Foundation(87654321)\\
+%\hspace*{2em}（注:基金项目英文名称查询“基金项目的中英文名称”） \\
+%\hei\makebox[\widthof{\makebox{*}\textbf{C}}][r]{\makebox{*}\textbf{C}}\textbf{orresponding author.} Tel.: 010-8231xxxx ~~ E-mail: bhxb@buaa.edu.cn
+%}}
+%  \end{@twocolumnfalse}
+%]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  英文摘要页 结束
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
